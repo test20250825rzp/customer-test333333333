@@ -1,0 +1,82 @@
+
+@import "tailwindcss";
+
+@theme inline {
+  /* 拼多多品牌配色 */
+  --color-background: oklch(0.98 0.01 30);
+  --color-foreground: oklch(0.2 0.02 30);
+  --color-primary: oklch(0.65 0.2 30);
+  --color-primary-foreground: oklch(0.98 0.01 30);
+  --color-secondary: oklch(0.92 0.05 30);
+  --color-secondary-foreground: oklch(0.3 0.02 30);
+  --color-muted: oklch(0.95 0.02 30);
+  --color-muted-foreground: oklch(0.5 0.02 30);
+  --color-accent: oklch(0.7 0.18 350);
+  --color-accent-foreground: oklch(0.98 0.01 30);
+  --color-destructive: oklch(0.6 0.2 20);
+  --color-destructive-foreground: oklch(0.98 0.01 30);
+  --color-border: oklch(0.9 0.03 30);
+  --color-input: oklch(0.95 0.02 30);
+  --color-ring: oklch(0.65 0.2 30);
+  
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.2 0.02 30);
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.2 0.02 30);
+  
+  --color-chart-1: oklch(0.65 0.2 30);
+  --color-chart-2: oklch(0.7 0.18 350);
+  --color-chart-3: oklch(0.6 0.15 150);
+  --color-chart-4: oklch(0.75 0.12 200);
+  --color-chart-5: oklch(0.55 0.18 280);
+  
+  --color-sidebar: oklch(0.98 0.01 30);
+  --color-sidebar-foreground: oklch(0.2 0.02 30);
+  --color-sidebar-primary: oklch(0.65 0.2 30);
+  --color-sidebar-primary-foreground: oklch(0.98 0.01 30);
+  --color-sidebar-accent: oklch(0.7 0.18 350);
+  --color-sidebar-accent-foreground: oklch(0.98 0.01 30);
+  --color-sidebar-border: oklch(0.9 0.03 30);
+  --color-sidebar-ring: oklch(0.65 0.2 30);
+
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  
+  --radius: 0.5rem;
+}
+
+/* 拼多多特色样式 */
+.gradient-red {
+  background: linear-gradient(135deg, #e02424 0%, #ff5050 100%);
+}
+
+.gradient-orange {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff9500 100%);
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.blink {
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
