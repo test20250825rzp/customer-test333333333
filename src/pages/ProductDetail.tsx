@@ -73,16 +73,16 @@ const ProductDetail = () => {
     <div className="min-h-screen bg-background pb-20">
       {/* 顶部导航 */}
       <div className="sticky top-0 bg-white z-40 border-b">
-        <div className="px-4 py-3 flex items-center justify-between">
-          <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
-            <ChevronLeft className="h-5 w-5" />
+        <div className="px-4 py-2 flex items-center justify-between">
+          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => navigate(-1)}>
+            <ChevronLeft className="h-4 w-4" />
           </Button>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon">
-              <Share2 className="h-5 w-5" />
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <Share2 className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="icon">
-              <MessageCircle className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <MessageCircle className="h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -90,76 +90,76 @@ const ProductDetail = () => {
 
       {/* 商品图片轮播 */}
       <div className="bg-white">
-        <div className="aspect-square overflow-hidden">
+        <div className="aspect-[4/3] overflow-hidden">
           <img src={product.image} alt={product.title} className="w-full h-full object-cover" />
         </div>
         {/* 图片指示器 */}
-        <div className="flex gap-2 p-3 overflow-x-auto">
+        <div className="flex gap-1.5 p-2 overflow-x-auto">
           {product.images.map((img, i) => (
             <img
               key={i}
               src={img}
               alt={`商品图${i + 1}`}
-              className={`w-16 h-16 object-cover rounded border-2 ${i === 0 ? "border-primary" : "border-transparent"}`}
+              className={`w-12 h-12 object-cover rounded border ${i === 0 ? "border-primary" : "border-transparent"}`}
             />
           ))}
         </div>
       </div>
 
       {/* 商品信息 */}
-      <div className="p-4 bg-white border-b">
+      <div className="p-3 bg-white border-b">
         {product.badge && (
-          <Badge className="bg-accent text-accent-foreground mb-2">{product.badge}</Badge>
+          <Badge className="bg-accent text-accent-foreground mb-1.5 text-xs">{product.badge}</Badge>
         )}
-        <h1 className="font-bold text-lg text-foreground mb-2">{product.title}</h1>
+        <h1 className="font-bold text-sm text-foreground mb-1.5 line-clamp-2">{product.title}</h1>
         
         {/* 价格 */}
-        <div className="flex items-end gap-2 mb-3">
-          <span className="text-red-500 font-bold text-2xl">¥{product.price.toFixed(2)}</span>
-          <span className="text-muted-foreground text-sm line-through">¥{product.originalPrice.toFixed(2)}</span>
+        <div className="flex items-end gap-1.5 mb-2">
+          <span className="text-red-500 font-bold text-xl">¥{product.price.toFixed(2)}</span>
+          <span className="text-muted-foreground text-xs line-through">¥{product.originalPrice.toFixed(2)}</span>
         </div>
 
         {/* 拼团信息 */}
         {product.isGroupBuy && (
-          <Card className="bg-red-50 border-red-200 mb-3">
-            <CardContent className="p-3">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 text-red-500" />
-                  <span className="font-medium text-red-600">
+          <Card className="bg-red-50 border-red-200 mb-2">
+            <CardContent className="p-2">
+              <div className="flex items-center justify-between mb-1.5">
+                <div className="flex items-center gap-1.5">
+                  <Users className="h-3.5 w-3.5 text-red-500" />
+                  <span className="font-medium text-red-600 text-sm">
                     拼团价 ¥{product.groupPrice.toFixed(2)}
                   </span>
                 </div>
-                <div className="flex items-center gap-1 text-muted-foreground text-sm">
-                  <Clock className="h-4 w-4" />
+                <div className="flex items-center gap-0.5 text-muted-foreground text-xs">
+                  <Clock className="h-3.5 w-3.5" />
                   <span>剩余 {groupInfo.endTime}</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="flex -space-x-2">
+              <div className="flex items-center gap-1.5">
+                <div className="flex -space-x-1.5">
                   {groupInfo.members.map((member, i) => (
                     <img
                       key={i}
                       src={member.avatar}
                       alt={member.name}
-                      className="w-6 h-6 rounded-full border-2 border-white"
+                      className="w-5 h-5 rounded-full border border-white"
                     />
                   ))}
                 </div>
-                <span className="text-xs text-muted-foreground">
+                <span className="text-[10px] text-muted-foreground">
                   还差 {groupInfo.remaining} 人成团
                 </span>
               </div>
-              <Progress value={(groupInfo.remaining / groupInfo.total) * 100} className="h-1.5 mt-2" />
+              <Progress value={(groupInfo.remaining / groupInfo.total) * 100} className="h-1 mt-1.5" />
             </CardContent>
           </Card>
         )}
 
         {/* 销量和评价 */}
-        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
           <span>已拼{product.sales}件</span>
-          <div className="flex items-center gap-1">
-            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+          <div className="flex items-center gap-0.5">
+            <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
             <span>{product.rating}</span>
             <span>({product.reviewCount}条评价)</span>
           </div>
@@ -167,32 +167,32 @@ const ProductDetail = () => {
       </div>
 
       {/* 服务保障 */}
-      <div className="p-4 bg-white border-b">
-        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1">
-            <Truck className="h-4 w-4" />
+      <div className="p-3 bg-white border-b">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          <div className="flex items-center gap-0.5">
+            <Truck className="h-3.5 w-3.5" />
             <span>48 小时发货</span>
           </div>
-          <div className="flex items-center gap-1">
-            <Shield className="h-4 w-4" />
+          <div className="flex items-center gap-0.5">
+            <Shield className="h-3.5 w-3.5" />
             <span>假一赔十</span>
           </div>
-          <div className="flex items-center gap-1">
-            <ThumbsUp className="h-4 w-4" />
+          <div className="flex items-center gap-0.5">
+            <ThumbsUp className="h-3.5 w-3.5" />
             <span>7 天无理由</span>
           </div>
         </div>
       </div>
 
       {/* 规格选择 */}
-      <div className="p-4 bg-white border-b">
-        <h2 className="font-bold text-foreground mb-3">选择规格</h2>
-        <div className="flex flex-wrap gap-2">
+      <div className="p-3 bg-white border-b">
+        <h2 className="font-bold text-sm text-foreground mb-2">选择规格</h2>
+        <div className="flex flex-wrap gap-1.5">
           {product.specs.map((spec, i) => (
             <Button
               key={i}
               variant="outline"
-              className={`border-primary ${i === 0 ? "bg-primary/10 text-primary" : ""}`}
+              className={`border-primary text-xs h-7 px-2.5 ${i === 0 ? "bg-primary/10 text-primary" : ""}`}
             >
               {spec}
             </Button>
@@ -201,44 +201,44 @@ const ProductDetail = () => {
       </div>
 
       {/* 用户评价 */}
-      <div className="p-4 bg-white">
+      <div className="p-3 bg-white">
         <Tabs defaultValue="reviews" className="w-full">
           <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent">
             <TabsTrigger
               value="reviews"
-              className="data-[state=active]:border-primary data-[state=active]:text-foreground text-muted-foreground border-b-2 border-transparent rounded-none px-4 py-2 h-auto"
+              className="data-[state=active]:border-primary data-[state=active]:text-foreground text-muted-foreground border-b-2 border-transparent rounded-none px-3 py-1.5 h-auto text-sm"
             >
               用户评价 ({product.reviewCount})
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="reviews" className="mt-4">
-            <div className="space-y-4">
+          <TabsContent value="reviews" className="mt-3">
+            <div className="space-y-3">
               {reviews.map((review) => (
-                <div key={review.id} className="border-b pb-4 last:border-0">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Avatar className="w-8 h-8">
-                      <AvatarFallback>{review.avatar}</AvatarFallback>
+                <div key={review.id} className="border-b pb-3 last:border-0">
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <Avatar className="w-7 h-7">
+                      <AvatarFallback className="text-xs">{review.avatar}</AvatarFallback>
                     </Avatar>
-                    <span className="text-sm font-medium">{review.user}</span>
+                    <span className="text-xs font-medium">{review.user}</span>
                     <div className="flex items-center gap-0.5">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`h-3 w-3 ${i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"}`}
+                          className={`h-2.5 w-2.5 ${i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"}`}
                         />
                       ))}
                     </div>
-                    <span className="text-xs text-muted-foreground ml-auto">{review.time}</span>
+                    <span className="text-[10px] text-muted-foreground ml-auto">{review.time}</span>
                   </div>
-                  <p className="text-sm text-foreground mb-2">{review.content}</p>
+                  <p className="text-xs text-foreground mb-1.5">{review.content}</p>
                   {review.images.length > 0 && (
-                    <div className="flex gap-2">
+                    <div className="flex gap-1.5">
                       {review.images.map((img, i) => (
                         <img
                           key={i}
                           src={img}
                           alt="评价图"
-                          className="w-16 h-16 object-cover rounded"
+                          className="w-12 h-12 object-cover rounded"
                         />
                       ))}
                     </div>
@@ -246,7 +246,7 @@ const ProductDetail = () => {
                 </div>
               ))}
             </div>
-            <Button variant="ghost" className="w-full mt-4">
+            <Button variant="ghost" className="w-full mt-3 h-8 text-xs">
               查看全部评价
             </Button>
           </TabsContent>
@@ -254,24 +254,24 @@ const ProductDetail = () => {
       </div>
 
       {/* 底部操作栏 */}
-      <div className="fixed bottom-14 left-0 right-0 bg-white border-t p-3 z-40">
-        <div className="flex items-center gap-3">
+      <div className="fixed bottom-14 left-0 right-0 bg-white border-t p-2.5 z-40">
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
             size="icon"
-            className={isLiked ? "text-red-500" : ""}
+            className={`h-9 w-9 ${isLiked ? "text-red-500" : ""}`}
             onClick={() => setIsLiked(!isLiked)}
           >
-            <Heart className={`h-5 w-5 ${isLiked ? "fill-red-500" : ""}`} />
+            <Heart className={`h-4 w-4 ${isLiked ? "fill-red-500" : ""}`} />
           </Button>
-          <Button variant="ghost" size="icon">
-            <ShoppingCart className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="h-9 w-9">
+            <ShoppingCart className="h-4 w-4" />
           </Button>
           <div className="flex-1" />
-          <Button className="bg-orange-500 text-white px-6">
+          <Button className="bg-orange-500 text-white px-4 h-8 text-sm">
             发起拼单
           </Button>
-          <Button className="bg-gradient-red text-white px-6">
+          <Button className="bg-gradient-red text-white px-4 h-8 text-sm">
             单独购买
           </Button>
         </div>

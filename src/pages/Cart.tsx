@@ -68,108 +68,108 @@ const Cart = () => {
         </div>
       </div>
 
-      {/* 购物车内容 */}
-      <div className="p-4">
-        {/* 拼单提示 */}
-        <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
-          <p className="text-sm text-red-600">
+      {/* 拼单提示 */}
+      <div className="p-3">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-2.5">
+          <p className="text-xs text-red-600">
             💡 提示：选择拼团商品并发起拼单，可享受更优惠价格！
           </p>
         </div>
+      </div>
 
-        {/* 购物车列表 */}
-        <div className="space-y-3">
-          {cartItems.map((item) => (
-            <Card key={item.id} className="border overflow-hidden">
-              <CardContent className="p-3">
-                <div className="flex gap-3">
-                  <Checkbox
-                    checked={selected.includes(item.id)}
-                    onCheckedChange={() => toggleSelect(item.id)}
-                  />
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-20 h-20 object-cover rounded"
-                  />
-                  <div className="flex-1">
-                    <h3 className="text-sm font-medium line-clamp-2 mb-2">
-                      {item.title}
-                    </h3>
-                    {item.isGroupBuy && (
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-red-500 font-bold">
-                          ¥{item.groupPrice.toFixed(2)}
-                        </span>
-                        <span className="text-muted-foreground text-xs line-through">
-                          ¥{item.price.toFixed(2)}
-                        </span>
-                        <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded">
-                          拼团价
-                        </span>
-                      </div>
-                    )}
-                    {!item.isGroupBuy && (
-                      <p className="text-red-500 font-bold mb-2">
+      {/* 购物车列表 */}
+      <div className="p-3 space-y-2">
+        {cartItems.map((item) => (
+          <Card key={item.id} className="border overflow-hidden">
+            <CardContent className="p-2.5">
+              <div className="flex gap-2.5">
+                <Checkbox
+                  checked={selected.includes(item.id)}
+                  onCheckedChange={() => toggleSelect(item.id)}
+                  className="mt-1"
+                />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-16 h-16 object-cover rounded"
+                />
+                <div className="flex-1">
+                  <h3 className="text-xs font-medium line-clamp-2 mb-1.5">
+                    {item.title}
+                  </h3>
+                  {item.isGroupBuy && (
+                    <div className="flex items-center gap-1.5 mb-1.5">
+                      <span className="text-red-500 font-bold text-sm">
+                        ¥{item.groupPrice.toFixed(2)}
+                      </span>
+                      <span className="text-muted-foreground text-[10px] line-through">
                         ¥{item.price.toFixed(2)}
-                      </p>
-                    )}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center border rounded">
-                        <button
-                          onClick={() => updateQuantity(item.id, -1)}
-                          className="px-2 py-1 text-muted-foreground hover:bg-muted"
-                        >
-                          <Minus className="h-4 w-4" />
-                        </button>
-                        <span className="px-3 text-sm">{quantities[item.id]}</span>
-                        <button
-                          onClick={() => updateQuantity(item.id, 1)}
-                          className="px-2 py-1 text-muted-foreground hover:bg-muted"
-                        >
-                          <Plus className="h-4 w-4" />
-                        </button>
-                      </div>
-                      <button className="text-muted-foreground hover:text-destructive">
-                        <Trash2 className="h-4 w-4" />
+                      </span>
+                      <span className="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded">
+                        拼团价
+                      </span>
+                    </div>
+                  )}
+                  {!item.isGroupBuy && (
+                    <p className="text-red-500 font-bold text-sm mb-1.5">
+                      ¥{item.price.toFixed(2)}
+                    </p>
+                  )}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center border rounded h-7">
+                      <button
+                        onClick={() => updateQuantity(item.id, -1)}
+                        className="px-1.5 text-muted-foreground hover:bg-muted"
+                      >
+                        <Minus className="h-3.5 w-3.5" />
+                      </button>
+                      <span className="px-2 text-xs">{quantities[item.id]}</span>
+                      <button
+                        onClick={() => updateQuantity(item.id, 1)}
+                        className="px-1.5 text-muted-foreground hover:bg-muted"
+                      >
+                        <Plus className="h-3.5 w-3.5" />
                       </button>
                     </div>
+                    <button className="text-muted-foreground hover:text-destructive">
+                      <Trash2 className="h-4 w-4" />
+                    </button>
                   </div>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* 推荐商品 */}
+      <div className="p-3">
+        <h2 className="font-bold text-sm text-foreground mb-2.5">猜你喜欢</h2>
+        <div className="grid grid-cols-4 gap-2">
+          {[1, 2, 3, 4].map((i) => (
+            <Card key={i} className="border cursor-pointer">
+              <CardContent className="p-1.5">
+                <img
+                  src={`https://picsum.photos/seed/rec${i}/150/150`}
+                  alt="推荐"
+                  className="w-full aspect-square object-cover rounded mb-1"
+                />
+                <p className="text-[10px] line-clamp-2 mb-0.5">
+                  推荐商品{i} 超值优惠
+                </p>
+                <p className="text-red-500 font-bold text-xs">
+                  ¥{(Math.random() * 50 + 9.9).toFixed(1)}
+                </p>
               </CardContent>
             </Card>
           ))}
         </div>
-
-        {/* 推荐商品 */}
-        <div className="mt-6">
-          <h2 className="font-bold text-lg text-foreground mb-3">猜你喜欢</h2>
-          <div className="grid grid-cols-2 gap-3">
-            {[1, 2, 3, 4].map((i) => (
-              <Card key={i} className="border cursor-pointer">
-                <CardContent className="p-2">
-                  <img
-                    src={`https://picsum.photos/seed/rec${i}/150/150`}
-                    alt="推荐"
-                    className="w-full aspect-square object-cover rounded mb-2"
-                  />
-                  <p className="text-xs line-clamp-2 mb-1">
-                    推荐商品{i} 超值优惠 限时特价
-                  </p>
-                  <p className="text-red-500 font-bold text-sm">
-                    ¥{(Math.random() * 50 + 9.9).toFixed(1)}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* 底部结算栏 */}
-      <div className="fixed bottom-14 left-0 right-0 bg-white border-t p-3 z-40">
+      <div className="fixed bottom-14 left-0 right-0 bg-white border-t p-2.5 z-40">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <Checkbox
               checked={selected.length === cartItems.length}
               onCheckedChange={() => {
@@ -180,17 +180,17 @@ const Cart = () => {
                 }
               }}
             />
-            <span className="text-sm text-foreground">全选</span>
-            <span className="text-muted-foreground text-sm">
+            <span className="text-xs text-foreground">全选</span>
+            <span className="text-muted-foreground text-xs">
               已选 {selected.length} 件
             </span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <div className="text-right">
-              <p className="text-xs text-muted-foreground">合计:</p>
-              <p className="text-red-500 font-bold text-lg">¥{total.toFixed(2)}</p>
+              <p className="text-[10px] text-muted-foreground">合计:</p>
+              <p className="text-red-500 font-bold text-base">¥{total.toFixed(2)}</p>
             </div>
-            <Button className="bg-gradient-red text-white px-6">
+            <Button className="bg-gradient-red text-white px-4 h-8 text-xs">
               去结算 ({selected.length})
             </Button>
           </div>

@@ -41,42 +41,42 @@ export function ProductCard({
         <img
           src={image}
           alt={title}
-          className="w-full aspect-square object-cover"
+          className="w-full aspect-[4/3] object-cover"
         />
         {badge && (
-          <Badge className="absolute top-2 left-2 bg-accent text-accent-foreground text-xs">
+          <Badge className="absolute top-1 left-1 bg-accent text-accent-foreground text-[10px] px-1.5 py-0.5">
             {badge}
           </Badge>
         )}
         {isFlashSale && endTime && (
-          <div className="absolute top-2 right-2 bg-destructive text-destructive-foreground text-xs px-2 py-1 rounded-full flex items-center gap-1">
-            <Clock className="h-3 w-3" />
+          <div className="absolute top-1 right-1 bg-destructive text-destructive-foreground text-[10px] px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+            <Clock className="h-2.5 w-2.5" />
             {endTime}
           </div>
         )}
       </div>
-      <CardContent className="p-3">
-        <h3 className="text-sm font-medium line-clamp-2 mb-2 h-9">{title}</h3>
+      <CardContent className="p-2">
+        <h3 className="text-xs font-medium line-clamp-2 mb-1.5 h-8">{title}</h3>
         
-        <div className="flex items-end gap-2 mb-2">
-          <span className="text-red-500 font-bold text-lg">¥{price.toFixed(2)}</span>
+        <div className="flex items-end gap-1.5 mb-1.5">
+          <span className="text-red-500 font-bold text-base">¥{price.toFixed(2)}</span>
           {originalPrice && (
-            <span className="text-muted-foreground text-xs line-through">¥{originalPrice.toFixed(2)}</span>
+            <span className="text-muted-foreground text-[10px] line-through">¥{originalPrice.toFixed(2)}</span>
           )}
         </div>
 
         {isGroupBuy && groupPrice && (
-          <div className="bg-red-50 rounded-lg p-2 mb-2">
-            <div className="flex items-center justify-between text-xs">
+          <div className="bg-red-50 rounded-md p-1.5 mb-1.5">
+            <div className="flex items-center justify-between text-[10px]">
               <span className="text-red-600 font-medium">拼团价 ¥{groupPrice.toFixed(2)}</span>
-              <div className="flex items-center gap-1 text-muted-foreground">
-                <Users className="h-3 w-3" />
+              <div className="flex items-center gap-0.5 text-muted-foreground">
+                <Users className="h-2.5 w-2.5" />
                 <span>{groupRemaining}/{groupSize}人团</span>
               </div>
             </div>
             {groupRemaining && groupRemaining < groupSize && (
-              <div className="mt-1">
-                <div className="h-1.5 bg-red-200 rounded-full overflow-hidden">
+              <div className="mt-0.5">
+                <div className="h-1 bg-red-200 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-red-500 rounded-full"
                     style={{ width: `${(groupRemaining / groupSize) * 100}%` }}
@@ -89,12 +89,12 @@ export function ProductCard({
 
         <div className="flex items-center justify-between">
           {sales && (
-            <span className="text-xs text-muted-foreground">已拼{sales}件</span>
+            <span className="text-[10px] text-muted-foreground">已拼{sales}件</span>
           )}
           <Button 
             size="sm" 
             className={cn(
-              "h-7 text-xs px-3",
+              "h-6 text-[10px] px-2",
               isGroupBuy ? "bg-gradient-red text-white" : "bg-primary text-primary-foreground"
             )}
           >
