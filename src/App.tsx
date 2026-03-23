@@ -5,6 +5,8 @@ import Category from "./pages/Category";
 import Cart from "./pages/Cart";
 import Chat from "./pages/Chat";
 import Profile from "./pages/Profile";
+import ProductList from "./pages/ProductList";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
         </Routes>
       </div>
     </BrowserRouter>
