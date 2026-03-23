@@ -1,7 +1,7 @@
 
 import { Clock, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "date-fns";
+import { useState, useEffect } from "react";
 
 interface FlashSaleBannerProps {
   endTime: Date;
